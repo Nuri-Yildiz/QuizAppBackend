@@ -1,7 +1,9 @@
 package com.homework.quizapp.service;
 
 
-import com.homework.quizapp.entity.UserEntity;
+import com.homework.quizapp.controller.rest.requestDTO.UserLogin;
+import com.homework.quizapp.controller.rest.requestDTO.UserRegister;
+import com.homework.quizapp.entity.User;
 import com.homework.quizapp.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,18 +14,23 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public String registerUser(UserEntity user) {
+    public String registerUser(UserRegister user) {
 
-        userRepository.save(user);
-        return user.getFirstname();
+        User userEntity = new User();
+        userEntity.setEmail(user.getEmail());
+        userEntity.setFirstname(user.getFirstName());
+        userEntity.setLastname(user.getLastName());
+        userEntity.setPassword((user.getPassword()));
+
+        userRepository.save(userEntity);
+        return userEntity.getFirstname();
     }
 
 
-    /*
     public String login(UserLogin userLogin) {
-        User user = userRepository.findByUserName(userLogin.getUserName());
+        User user = userRepository.findByEmail(userLogin.getEmail()).get();
         return user.getEmail();
     }
 
-     */
+
 }

@@ -1,5 +1,6 @@
 package com.homework.quizapp.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -7,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Data
 @Table(name = "users")
-public class UserEntity {
+public class User {
 
     @Id
     @GeneratedValue

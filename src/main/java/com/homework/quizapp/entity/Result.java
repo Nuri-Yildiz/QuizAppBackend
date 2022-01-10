@@ -1,5 +1,7 @@
 package com.homework.quizapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -12,7 +14,7 @@ public class Result  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(name = "correct_answers")
     private int correctAnswers;
@@ -20,16 +22,12 @@ public class Result  {
     @Column(name = "incorrect_answers")
     private int incorrectAnswers;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "start_time")
-    private Date startTime;
-
     //bi-directional many-to-one association to Quize
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "quiz_id")
     private Quiz quiz;
 
     //bi-directional many-to-one association to User
-    @ManyToOne(fetch = FetchType.LAZY)
-    private UserEntity user;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private User user;
 }

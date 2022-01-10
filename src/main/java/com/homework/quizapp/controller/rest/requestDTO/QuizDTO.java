@@ -9,19 +9,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserLogin {
-    private String email;
-    private String password;
+public class QuizDTO {
+    private String name;
+    private String imageUrl;
 
-
-    public UserLogin toModel() {
-        return UserLogin.builder()
-                .email(email)
-                .password(password)
+    public QuizDTO toModel() {
+        return QuizDTO.builder()
+                .name(name)
+                .imageUrl(imageUrl)
                 .build();
     }
-
-
 }
-
-

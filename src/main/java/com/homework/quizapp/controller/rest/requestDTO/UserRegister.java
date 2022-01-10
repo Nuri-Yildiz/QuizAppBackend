@@ -9,19 +9,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserLogin {
+public class UserRegister {
+    private String firstName;
+    private String lastName;
     private String email;
     private String password;
 
-
-    public UserLogin toModel() {
-        return UserLogin.builder()
+    public UserRegister toModel() {
+        return UserRegister.builder()
+                .firstName(firstName)
+                .lastName(lastName)
                 .email(email)
                 .password(password)
                 .build();
     }
 
-
 }
-
-

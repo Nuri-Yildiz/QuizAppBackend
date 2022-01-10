@@ -2,6 +2,8 @@ package com.homework.quizapp.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 
 @Entity
@@ -10,10 +12,10 @@ import lombok.Data;
 public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(name = "is_correct")
-    private byte isCorrect;
+    private boolean isCorrect;
 
     @Lob
     private String text;

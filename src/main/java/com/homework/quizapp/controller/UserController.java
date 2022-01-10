@@ -1,34 +1,37 @@
 package com.homework.quizapp.controller;
 
 
-import com.homework.quizapp.entity.UserEntity;
+import com.homework.quizapp.controller.rest.requestDTO.UserLogin;
+import com.homework.quizapp.controller.rest.requestDTO.UserRegister;
+import com.homework.quizapp.entity.User;
 import com.homework.quizapp.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api")
+@RequestMapping("/api/user")
 public class UserController {
 
     private final UserService userService;
 
     @PostMapping("/register")
-    public String register(@RequestBody UserEntity user) {
-        return userService.registerUser(user);
+    public String register(@RequestBody UserRegister registerRequest) {
+        final String response = userService.registerUser(registerRequest.toModel());
+        return "Kayıt Başarılı..." + response;
     }
 
     @GetMapping("/getString")
     public String getString(){
         return "hello";
     }
-   /*
-    @PostMapping("login")
+
+    @PostMapping("/login")
     public String login(@RequestBody UserLogin loginRequest) {
         final String response = userService.login(loginRequest.toModel());
         return "Giriş Yapıldı..." + response;
     }
-    */
+
 
 
 }

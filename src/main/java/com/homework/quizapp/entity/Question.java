@@ -1,6 +1,7 @@
 package com.homework.quizapp.entity;
 
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 import org.hibernate.annotations.Cascade;
 
@@ -13,13 +14,9 @@ import java.util.List;
 @Table(name="questions")
 public class Question  {
 
-
-
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int id;
-
-    private byte approved;
+    private Long id;
 
     @Column(name="image_url")
     private String imageUrl;
@@ -27,12 +24,10 @@ public class Question  {
     @Lob
     private String text;
 
-    //bi-directional many-to-one association to Answer
-    @OneToMany(mappedBy="question")
-    @Cascade(value = {org.hibernate.annotations.CascadeType.ALL})
-    private List<Answer> answers;
+    //@OneToMany(mappedBy="question")
+    //@Cascade(value = {org.hibernate.annotations.CascadeType.ALL})
+    //private List<Answer> answers;
 
-    //bi-directional many-to-one association to Quize
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="quiz_id")
     private Quiz quiz;
