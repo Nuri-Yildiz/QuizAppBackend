@@ -15,7 +15,7 @@ public class QuizController {
 
     private final QuizService quizService;
 
-    @GetMapping("/")
+    @GetMapping("/getQuiz")
     public List<Quiz> getQuiz(){
         return quizService.getQuizList();
     }

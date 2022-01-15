@@ -1,5 +1,6 @@
 package com.homework.quizapp.controller;
 
+import com.homework.quizapp.controller.rest.requestDTO.QuestionDTO;
 import com.homework.quizapp.controller.rest.requestDTO.QuizDTO;
 import com.homework.quizapp.controller.rest.requestDTO.UserRegister;
 import com.homework.quizapp.entity.Question;
@@ -21,14 +22,14 @@ public class QuestionController {
     }
 
     @DeleteMapping("/")
-    public String deleteQuestion(@RequestParam(value = "questionId")Long questionId){
-        String response = questionService.deleteQuestion(questionId);
+    public List<QuestionDTO> deleteQuestion(@RequestParam(value = "questionId")Long questionId){
+        List<QuestionDTO> response = questionService.deleteQuestion(questionId);
         return response;
     }
 
-    @GetMapping("/")
-    public List<Question> getQuestionList(@RequestParam(value = "quizId")Long quizId){
-        return questionService.getAllQuestion(quizId);
+    @GetMapping("/{quizId}")
+    public List<QuestionDTO> getQuestionList(@PathVariable Long quizId){
+        return questionService.getAllQuestion2(quizId);
 
     }
 
@@ -37,6 +38,7 @@ public class QuestionController {
         String response = questionService.updateQuestion(question);
         return response;
     }
+
 
 
 }
