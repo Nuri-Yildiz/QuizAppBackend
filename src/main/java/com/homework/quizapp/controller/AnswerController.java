@@ -13,13 +13,12 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api")
+@RequestMapping("/api/answers")
 public class AnswerController {
     private final AnswerService answerService;
 
     @PostMapping("/")
     public void addQuestion(@RequestBody List<Answer> answerList) {
         String response = answerService.addAnswers(answerList);
-
     }
 }

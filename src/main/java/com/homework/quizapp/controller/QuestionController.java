@@ -16,13 +16,13 @@ import java.util.List;
 public class QuestionController {
     private final QuestionService questionService;
 
-    @PostMapping("/")
+    @PostMapping("/addQuestion")
     public void addQuestion(@RequestBody Question question) {
         String response = questionService.addQuestion(question);
     }
 
-    @DeleteMapping("/")
-    public List<QuestionDTO> deleteQuestion(@RequestParam(value = "questionId")Long questionId){
+    @DeleteMapping("/{questionId}")
+    public List<QuestionDTO> deleteQuestion(@PathVariable Long questionId){
         List<QuestionDTO> response = questionService.deleteQuestion(questionId);
         return response;
     }
