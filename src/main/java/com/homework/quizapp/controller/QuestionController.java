@@ -17,8 +17,8 @@ public class QuestionController {
     private final QuestionService questionService;
 
     @PostMapping("/addQuestion")
-    public void addQuestion(@RequestBody Question question) {
-        String response = questionService.addQuestion(question);
+    public Question addQuestion(@RequestBody Question question) {
+        return questionService.addQuestion(question);
     }
 
     @DeleteMapping("/{questionId}")

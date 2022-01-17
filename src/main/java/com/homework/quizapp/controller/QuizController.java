@@ -21,13 +21,11 @@ public class QuizController {
     }
 
     @PostMapping("/addQuiz")
-    public String addQuiz(@RequestBody QuizDTO quizRequest){
-        final String response = quizService.addQuiz(quizRequest.toModel());
-        return "quiz eklendi... " + response;
+    public List<Quiz> addQuiz(@RequestBody QuizDTO quizRequest){
+        return  quizService.addQuiz(quizRequest.toModel());
     }
-    @DeleteMapping("/")
-    public String deleteQuiz(@RequestParam(value = "quizId")Long quizId){
-        String response = quizService.deleteQuiz(quizId);
-        return response;
+    @DeleteMapping("/{quizId}")
+    public List<Quiz> deleteQuiz(@PathVariable Long quizId){
+        return quizService.deleteQuiz(quizId);
     }
 }

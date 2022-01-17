@@ -9,14 +9,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ResultDTO {
+public class CreateResultDTO {
 
-    private String userName;
+    private Long userId;
 
-    private String quizName;
+    private Long quizId;
 
-    private int correctAnswerCount;
+    private int correctAnswers;
 
-    private int questionCount;
+    private int incorrectAnswers;
 
 }

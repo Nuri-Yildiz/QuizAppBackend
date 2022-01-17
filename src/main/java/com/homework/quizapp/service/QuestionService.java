@@ -20,15 +20,15 @@ public class QuestionService {
     private final QuestionRepository questionRepository;
     private final QuizRepository quizRepository;
     private final AnswerRepository answerRepository;
-    public String addQuestion(Question question) {
+    public Question addQuestion(Question question) {
         Question newQuestion = new Question();
         newQuestion.setText(question.getText());
         newQuestion.setImageUrl(question.getImageUrl());
         Quiz quiz = quizRepository.findById(question.getQuiz().getId()).get();
         newQuestion.setQuiz(quiz);
-        questionRepository.save(newQuestion);
 
-        return "Soru kaydedildi...";
+
+        return questionRepository.save(newQuestion);
 
 
     }

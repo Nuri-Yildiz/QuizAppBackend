@@ -17,7 +17,7 @@ import java.util.List;
 public class AnswerController {
     private final AnswerService answerService;
 
-    @PostMapping("/")
+    @PostMapping("")
     public void addQuestion(@RequestBody List<Answer> answerList) {
         String response = answerService.addAnswers(answerList);
     }

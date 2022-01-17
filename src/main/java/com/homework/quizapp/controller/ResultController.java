@@ -1,5 +1,6 @@
 package com.homework.quizapp.controller;
 
+import com.homework.quizapp.controller.rest.requestDTO.CreateResultDTO;
 import com.homework.quizapp.controller.rest.requestDTO.ResultDTO;
 import com.homework.quizapp.entity.Question;
 import com.homework.quizapp.entity.Result;
@@ -15,12 +16,12 @@ import java.util.List;
 public class ResultController {
     private final ResultService resultService;
 
-    @PostMapping("/")
-    public void saveResult(@RequestBody ResultDTO resultDTO) {
+    @PostMapping("")
+    public void saveResult(@RequestBody CreateResultDTO resultDTO) {
         String response = resultService.saveResult(resultDTO);
     }
-    @GetMapping("/")
-    public List<Result> getResults(@RequestParam(value = "userId")Long userId){
-        return resultService.getResults(userId);
+    @GetMapping("")
+    public List<ResultDTO> getResults(){
+        return resultService.getResults();
     }
 }

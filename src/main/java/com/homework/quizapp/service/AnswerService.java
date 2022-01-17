@@ -7,6 +7,7 @@ import com.homework.quizapp.repository.QuizRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -16,6 +17,7 @@ public class AnswerService {
     private final AnswerRepository answerRepository;
 
     public String addAnswers(List<Answer> answerList) {
+        Collections.shuffle(answerList);
         for (Answer answer:answerList) {
             saveAnswer(answer);
         }
@@ -25,7 +27,6 @@ public class AnswerService {
     public Answer saveAnswer(Answer answer){
         Answer newAnswer = new Answer();
         newAnswer.setText(answer.getText());
-        //newAnswer.setIsCorrect(answer.getIsCorrect());
         newAnswer.setCorrect(answer.isCorrect());
         newAnswer.setQuestion(questionRepository.findById(answer.getQuestion().getId()).get());
         return answerRepository.save(newAnswer);

@@ -3,7 +3,6 @@ package com.homework.quizapp.controller;
 
 import com.homework.quizapp.controller.rest.requestDTO.UserLogin;
 import com.homework.quizapp.controller.rest.requestDTO.UserRegister;
-import com.homework.quizapp.entity.User;
 import com.homework.quizapp.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -25,13 +24,6 @@ public class UserController {
     public String getString(){
         return "hello";
     }
-
-    @PostMapping("/login")
-    public String login(@RequestBody UserLogin loginRequest) {
-        final String response = userService.login(loginRequest.toModel());
-        return "Giriş Yapıldı..." + response;
-    }
-
 
 
 }

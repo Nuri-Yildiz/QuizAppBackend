@@ -13,13 +13,12 @@ import java.util.List;
 public class QuizService {
     private final QuizRepository quizRepository;
 
-    public String addQuiz(QuizDTO quiz){
+    public List<Quiz> addQuiz(QuizDTO quiz){
         Quiz quizEntity = new Quiz();
         quizEntity.setName(quiz.getName());
         quizEntity.setImageUrl(quiz.getImageUrl());
-
         quizRepository.save(quizEntity);
-        return "quiz eklendi...";
+        return quizRepository.findAll();
     }
 
 
@@ -27,10 +26,9 @@ public class QuizService {
       return quizRepository.findAll();
     }
 
-    public String deleteQuiz(Long quizId) {
+    public List<Quiz> deleteQuiz(Long quizId) {
         quizRepository.delete(quizRepository.findById(quizId).get());
-        return "Quiz Silindi.";
-
+        return quizRepository.findAll();
     }
 
     /*
