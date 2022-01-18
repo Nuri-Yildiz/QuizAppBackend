@@ -13,6 +13,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
 
 import static org.springframework.http.HttpMethod.POST;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
@@ -40,10 +45,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(AUTH_WHITELIST).permitAll();
         http.authorizeRequests().antMatchers("/api/login/** ", "/api/login", "/api/token/refresh/**" ).permitAll();
         http.authorizeRequests().antMatchers( "/api/user/**" ).permitAll();
-        http.authorizeRequests().antMatchers(POST, "/api/users/add");
+        http.authorizeRequests().antMatchers("/api/quiz/**").permitAll();
+        http.authorizeRequests().antMatchers(POST, "/api/quiz/addQuiz").hasRole("Admin");
+
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(customAuthenticationFilter);
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
+    }
+
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+
+        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration config = new CorsConfiguration();
+        source.registerCorsConfiguration("/**", config.applyPermitDefaultValues());
+        //allow Authorization to be exposed
+        config.setExposedHeaders(Arrays.asList("Authorization"));
+
+        return source;
     }
 
     @Bean

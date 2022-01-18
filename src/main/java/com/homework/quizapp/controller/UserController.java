@@ -3,6 +3,7 @@ package com.homework.quizapp.controller;
 
 import com.homework.quizapp.controller.rest.requestDTO.UserLogin;
 import com.homework.quizapp.controller.rest.requestDTO.UserRegister;
+import com.homework.quizapp.entity.User;
 import com.homework.quizapp.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -20,9 +21,10 @@ public class UserController {
         return "Kayıt Başarılı..." + response;
     }
 
-    @GetMapping("/getString")
-    public String getString(){
-        return "hello";
+
+    @GetMapping("/{email}")
+    public User getUserByEmail(@PathVariable String email){
+        return userService.getUser(email);
     }
 
 
