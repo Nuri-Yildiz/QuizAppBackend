@@ -31,17 +31,4 @@ public class QuizService {
         return quizRepository.findAll();
     }
 
-    /*
-    public String registerUser(UserRegister user) {
-
-        User userEntity = new User();
-        userEntity.setEmail(user.getEmail());
-        userEntity.setFirstname(user.getFirstName());
-        userEntity.setLastname(user.getLastName());
-        userEntity.setPassword((user.getPassword()));
-
-        userRepository.save(userEntity);
-        return userEntity.getFirstname();
-    }
-     */
 }

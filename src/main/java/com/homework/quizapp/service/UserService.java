@@ -32,7 +32,7 @@ public class UserService implements UserDetailsService {
 
     public String registerUser(UserRegister user) {
 
-        Role role = roleRepository.getById(1L);
+        Role role = roleRepository.getById(2L);
 
         User userEntity = new User();
 
